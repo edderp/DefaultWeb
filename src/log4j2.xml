@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true"
+	name="XMLConfigTest" packages="org.apache.logging.log4j.test">
+	<Appenders>
+		<Console name="Console">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} [%t] - %msg%n" />
+		</Console>
+		<File name="File" fileName="JavaNewFeatures.log" immediateFlush="false" append="true">
+			<PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.apache.logging.log4j.test1" level="info"
+			additivity="false">
+			<Filter type="ThreadContextMapFilter">
+				<KeyValuePair key="test" value="123" />
+			</Filter>
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="org.apache.logging.log4j.test2" level="info"
+			additivity="false">
+			<AppenderRef ref="File" />
+		</Logger>
+
+		<Root level="debug">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+
+</Configuration>
