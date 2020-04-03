@@ -16,13 +16,13 @@ public class PredicateExample {
     
     empleados.stream().forEach(logger::info);
     // Prueba y filtrado a través de stream y Lambda expressions
-    logger.info("Número de empleados hombres mayores de edad: " + empleados.stream()
+    logger.info("Número de empleados hombres mayores de edad: {}", empleados.stream()
         .filter(e -> e.getAge() > 21 && e.getSexo().equals(Sexo.MASCULINO)).count());
-    logger.info("Número de empleadas mujeres mayores de edad: "+ empleados.stream().filter(isMujerAdulta()).count());
-    logger.info("Primer empleado mayor de 30 en la lista: "+empleados.stream().filter(edadMayorQue(30)).findFirst());
-    logger.info("Mujeres en la empresa: " + empleados.stream().filter(isMujerAdulta()).collect(Collectors.toList()));
-    logger.info("Total de salarios pagados en la empresa: " + empleados.stream().mapToDouble(e -> e.getSalary()).sum());
-    logger.info("" + empleados.stream().filter(edadMayorQue(30).negate()).findAny());
+    logger.info("Número de empleadas mujeres mayores de edad: {}", empleados.stream().filter(isMujerAdulta()).count());
+    logger.info("Primer empleado mayor de 30 en la lista: {}", empleados.stream().filter(edadMayorQue(30)).findFirst());
+    logger.info("Mujeres en la empresa: {}", empleados.stream().filter(isMujerAdulta()).collect(Collectors.toList()));
+    logger.info("Total de salarios pagados en la empresa: {}", empleados.stream().mapToDouble(e -> e.getSalary()).sum());
+    logger.info("{}", empleados.stream().filter(edadMayorQue(30).negate()).findAny());
   }
   
   public static List<Employee> filtrarEmpleados(List<Employee> empleados,
@@ -38,4 +38,5 @@ public class PredicateExample {
   public static Predicate<Employee> edadMayorQue(int edad) {
     return t -> t.getAge() > edad;
   }
+  
 }
